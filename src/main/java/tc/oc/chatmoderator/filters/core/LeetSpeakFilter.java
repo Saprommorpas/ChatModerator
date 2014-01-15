@@ -58,7 +58,7 @@ public class LeetSpeakFilter extends Filter {
 
         PlayerViolationManager violations = this.getPlayerManager().getViolationSet(Preconditions.checkNotNull(player, "Player"));
         ArrayList<String> words = new ArrayList<>();
-        Violation violation = new LeetSpeakViolation(message.getTimeSent(), player, message.getOriginal(), violations.getViolationLevel(LeetSpeakViolation.class), words, type);
+        Violation violation = new LeetSpeakViolation(message.getTimeSent(), player, message, violations.getViolationLevel(LeetSpeakViolation.class), words, type);
 
         for (Pattern pattern : this.patterns) {
 

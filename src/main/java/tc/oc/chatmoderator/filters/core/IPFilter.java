@@ -57,7 +57,7 @@ public class IPFilter extends Filter {
         Set<InetAddress> ipAddresses = new HashSet<>();
 
         PlayerViolationManager violations = this.getPlayerManager().getViolationSet(Preconditions.checkNotNull(player, "Player"));
-        Violation violation = new ServerIPViolation(message.getTimeSent(), player, message.getOriginal(), violations.getViolationLevel(ServerIPViolation.class), ImmutableSet.copyOf(ipAddresses), type, FixStyleApplicant.FixStyle.DASH);
+        Violation violation = new ServerIPViolation(message.getTimeSent(), player, message, violations.getViolationLevel(ServerIPViolation.class), ImmutableSet.copyOf(ipAddresses), type, FixStyleApplicant.FixStyle.DASH);
         
         while (matcher.find()) {
             try {

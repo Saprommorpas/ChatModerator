@@ -12,6 +12,7 @@ import tc.oc.chatmoderator.events.ViolationAddEvent;
 import tc.oc.chatmoderator.violations.Violation;
 import tc.oc.chatmoderator.violations.core.*;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
@@ -127,6 +128,24 @@ public final class PlayerViolationManager {
         }
 
         return violations;
+    }
+
+    /**
+     * Gets the violation by querying for the specific hash code associated with the
+     * {@link org.bukkit.event.player.AsyncPlayerChatEvent} that the original violation message was sent in.
+     *
+     * @param hashcode The hash code to query on.
+     *
+     * @return The {@link tc.oc.chatmoderator.violations.Violation} associated with that hashcode.
+     */
+    public @Nullable Violation getViolationForHashCode(int hashcode) {
+        for (Violation violation : this.getAllViolations()) {
+            if (violation.getEventHashCode() == hashcode) {
+                return violation;
+            }
+        }
+
+        return null;
     }
 
     public void setLastMessageTime(Instant time) {

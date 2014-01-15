@@ -76,7 +76,7 @@ public class ProfanityFilter extends WeightedWordsFilter {
 
             for(Pattern pattern : this.getWeights().keySet()) {
 
-                Violation violation = new ProfanityViolation(message.getTimeSent(), player, message.getOriginal(), profanities, type, FixStyleApplicant.FixStyle.MAGIC);
+                Violation violation = new ProfanityViolation(message.getTimeSent(), player, message, profanities, type, FixStyleApplicant.FixStyle.MAGIC);
                 matcher = pattern.matcher(Preconditions.checkNotNull(word.getWord(), "word"));
 
                 while (matcher.find()) {

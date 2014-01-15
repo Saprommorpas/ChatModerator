@@ -49,7 +49,7 @@ public class RepeatedCharactersFilter extends Filter {
         List<String> repeatedCharacters = new ArrayList<>();
 
         PlayerViolationManager violationManager = this.getPlayerManager().getViolationSet(Preconditions.checkNotNull(player, "player"));
-        Violation violation = new RepeatedCharactersViolation(message.getTimeSent(), player, message.getOriginal(), violationManager.getViolationLevel(RepeatedCharactersViolation.class), repeatedCharacters, type);
+        Violation violation = new RepeatedCharactersViolation(message.getTimeSent(), player, message, violationManager.getViolationLevel(RepeatedCharactersViolation.class), repeatedCharacters, type);
 
         while(matcher.find()) {
             repeatedCharacters.add(matcher.group());

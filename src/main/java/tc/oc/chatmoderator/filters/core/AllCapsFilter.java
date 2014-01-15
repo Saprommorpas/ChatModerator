@@ -63,7 +63,7 @@ public class AllCapsFilter extends WordFilter {
         Set<String> upperCaseWords = new HashSet<>();
 
         PlayerViolationManager violationManager = this.getPlayerManager().getViolationSet(player);
-        Violation violation = new AllCapsViolation(message.getTimeSent(), player, message.getOriginal(), violationManager.getViolationLevel(AllCapsViolation.class), upperCaseWords, type);
+        Violation violation = new AllCapsViolation(message.getTimeSent(), player, message, violationManager.getViolationLevel(AllCapsViolation.class), upperCaseWords, type);
 
         for (Word word : wordSet.toList()) {
             if (this.whitelist.containsWord(word, false)) {

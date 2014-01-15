@@ -28,14 +28,17 @@ public class FixedMessage {
     private @Nullable String fixed;
 
     /**
+     * Represents the hashcode of the original event.  -1 if no hashcode is present.
+     */
+    private @Nullable int eventHashCode;
+
+    /**
      * Constructor for the {@link tc.oc.chatmoderator.messages.FixedMessage} class
      *
      * @param original The original message that was sent.
      */
-    public FixedMessage(final String original, final Instant timeSent) {
-        this.original = original;
-        this.timeSent = Preconditions.checkNotNull(timeSent, "time");
-        this.fixed = null;
+    public FixedMessage(final String original, final Instant timeSent, int eventHashCode) {
+        this(original, original, timeSent, eventHashCode);
     }
 
     /**
@@ -43,11 +46,12 @@ public class FixedMessage {
      *
      * @param original The original message that was sent.
      */
-    public FixedMessage(final String original, final String fixed, final Instant timeSent) {
+    public FixedMessage(final String original, final String fixed, final Instant timeSent, int eventHashCode) {
         this.original = original;
         this.fixed = fixed;
         this.timeSent = Preconditions.checkNotNull(timeSent, "time");
         this.fixed = null;
+        this.eventHashCode = eventHashCode;
     }
 
     /**
@@ -96,5 +100,9 @@ public class FixedMessage {
         builder.append('}');
 
         return builder.toString();
+    }
+
+    public final int getEventHashCode() {
+        return this.eventHashCode;
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import org.bukkit.OfflinePlayer;
 import org.joda.time.Instant;
 
+import tc.oc.chatmoderator.messages.FixedMessage;
 import tc.oc.chatmoderator.util.FixStyleApplicant;
 import tc.oc.chatmoderator.violations.Violation;
 import tc.oc.chatmoderator.zones.ZoneType;
@@ -29,7 +30,7 @@ public class ServerIPViolation extends Violation {
      * @param ipAddresses The selection of {@link java.net.InetAddress} that didn't pass the {@link tc.oc.chatmoderator.filters.core.RepeatedCharactersFilter}
      * @param zoneType The {@link tc.oc.chatmoderator.zones.ZoneType} where the violation occurred.
      */
-    public ServerIPViolation(final Instant time, final OfflinePlayer player, final String message, final double level, final Set<InetAddress> ipAddresses, ZoneType zoneType, FixStyleApplicant.FixStyle fixStyle) {
+    public ServerIPViolation(final Instant time, final OfflinePlayer player, final FixedMessage message, final double level, final Set<InetAddress> ipAddresses, ZoneType zoneType, FixStyleApplicant.FixStyle fixStyle) {
         super(time, player, message, level, true, zoneType, fixStyle);
        
         for (InetAddress ipAddress : Preconditions.checkNotNull(ipAddresses, "IP addresses")) {

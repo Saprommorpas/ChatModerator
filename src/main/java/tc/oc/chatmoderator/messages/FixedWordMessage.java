@@ -11,7 +11,7 @@ public class FixedWordMessage extends FixedMessage {
     private WordSet fixedWordSet;
 
     public FixedWordMessage(FixedMessage message, Pattern splitPattern) {
-        super(message.getOriginal(), message.getTimeSent());
+        super(message.getOriginal(), message.getTimeSent(), message.getEventHashCode());
 
         this.originalWordSet = new WordSetFactory(message, splitPattern, false).build().getWordSet();
         this.fixedWordSet = new WordSetFactory(message, splitPattern, true).build().getWordSet();

@@ -65,8 +65,7 @@ public final class ChatModeratorListener implements Listener {
         String message = Preconditions.checkNotNull(event, "Event").getMessage();
         OfflinePlayer player = Bukkit.getOfflinePlayer(event.getPlayer().getName());
 
-        FixedMessage fixedMessage = new FixedMessage(message, Instant.now());
-        fixedMessage.setFixed(fixedMessage.getOriginal());
+        FixedMessage fixedMessage = new FixedMessage(message, Instant.now(), event.hashCode());
 
         for (Filter filter : this.getFilterManager().getFiltersForZone(chatZone)) {
             if (fixedMessage.getFixed() == null || fixedMessage.getFixed().equals("")) {
@@ -116,7 +115,7 @@ public final class ChatModeratorListener implements Listener {
         for (int i = 0; i < event.getLines().length; i++) {
             signCreateInstant = Instant.now();
 
-            FixedMessage message = new FixedMessage(event.getLine(i), signCreateInstant);
+            FixedMessage message = new FixedMessage(event.getLine(i), signCreateInstant, event.hashCode());
             message.setFixed(message.getOriginal());
 
             if (event.getLine(i).equals("") || event.getLine(i) == null) {
